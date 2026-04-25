@@ -2,49 +2,47 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-// 1. PORTS ko component ke bahar rakha hai taaki dependency warning na aaye
-const PORTS = ['/api', 'http://localhost:5000'];
+// Production (Vercel) par empty string use hoga taaki path '/api/blog/...' bane
+// Local MacBook (M4) par http://localhost:5000 use hoga
+const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000';
 
 const Industries = () => {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // Ab ise UI mein render karenge
+  const [error, setError] = useState(null);
 
-  // 2. Fetch logic ko useCallback mein wrap kiya hai
   const fetchIndustryPosts = useCallback(async () => {
     setLoading(true);
     setError(null);
     let foundData = [];
 
-    for (let baseUrl of PORTS) {
-      try {
-        // Try lowercase 'industries'
-        let res = await axios.get(`${baseUrl}/api/blog/industries`);
-        
-        // Fallback to Capital 'Industries' if empty
-        if (!res.data || res.data.length === 0) {
-          res = await axios.get(`${baseUrl}/api/blog/Industries`);
-        }
+    // Case-sensitivity fallback mechanism
+    const variations = ['industries', 'Industries'];
 
+    try {
+      for (let variant of variations) {
+        // Vercel rewrites ke according endpoint hamesha /api/blog/... hoga
+        const res = await axios.get(`${BASE_URL}/api/blog/${variant}`);
+        
         if (res.data && res.data.length > 0) {
           foundData = res.data;
-          // activeBaseUrl ki jagah directly window property set ki warning hatane ke liye
-          window.WORKING_BASE_URL = baseUrl; 
-          break; 
+          break; // Data milte hi loop break karein
         }
-      } catch (err) {
-        console.error(`Attempt failed for ${baseUrl}`);
       }
-    }
 
-    if (foundData.length > 0) {
-      setPosts(foundData);
-      setSelectedPost(foundData[0]);
-    } else {
+      if (foundData.length > 0) {
+        setPosts(foundData);
+        setSelectedPost(foundData[0]);
+      } else {
+        setError("Industry database records not found. Verify category name in Admin.");
+      }
+    } catch (err) {
+      console.error("Fetch Error:", err.message);
       setError("Industry database connection failed. Please check your server.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -52,11 +50,10 @@ const Industries = () => {
   }, [fetchIndustryPosts]);
 
   const getImageUrl = (imagePath) => {
-    const base = window.WORKING_BASE_URL || '/api';
     if (!imagePath) return "https://via.placeholder.com/1200x600?text=Rhodeotech+Industries+Insights";
     if (imagePath.startsWith('http')) return imagePath;
     const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-    return `${base}${cleanPath}`;
+    return `${BASE_URL}${cleanPath}`;
   };
 
   if (loading) return (
@@ -84,19 +81,18 @@ const Industries = () => {
 
       <main className="max-w-screen-2xl mx-auto px-6 md:px-16 py-16">
         
-        {/* 3. Error UI added to resolve 'error is assigned a value but never used' */}
         {error && (
           <div className="mb-10 p-6 bg-orange-50 border-l-4 border-orange-500 rounded-2xl flex justify-between items-center">
             <p className="text-orange-800 font-medium">{error}</p>
-            <button onClick={fetchIndustryPosts} className="text-xs font-black uppercase text-orange-600 hover:underline">Retry</button>
+            <button onClick={fetchIndustryPosts} className="px-6 py-2 bg-orange-600 text-white rounded-xl text-[10px] font-black uppercase tracking-tighter hover:bg-orange-700 transition-all">Retry Sync</button>
           </div>
         )}
 
         <div className="flex flex-col xl:flex-row gap-16">
           <div className="xl:w-2/3">
             {selectedPost ? (
-              <article className="animate-fadeIn">
-                <div className="rounded-[3rem] overflow-hidden bg-gray-100 mb-12 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] group">
+              <article className="animate-fadeIn transition-all duration-700">
+                <div className="rounded-[3rem] overflow-hidden bg-gray-100 mb-12 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] group border border-gray-100">
                   <img 
                     src={getImageUrl(selectedPost.image)} 
                     alt={selectedPost.title}
@@ -128,6 +124,7 @@ const Industries = () => {
               <div className="py-40 text-center bg-gray-50 rounded-[3rem] border-2 border-dashed border-gray-200">
                 <div className="text-6xl mb-6 opacity-20 grayscale">🏢</div>
                 <h3 className="text-2xl font-black text-gray-300 uppercase tracking-widest">Data Not Found</h3>
+                <p className="text-gray-400 mt-2 max-w-xs mx-auto">Make sure the category name in Admin matches "industries".</p>
               </div>
             )}
           </div>
@@ -172,10 +169,9 @@ const Industries = () => {
         </div>
       </main>
 
-      {/* FOOTER BANNER */}
       <section className="py-24 px-6 md:px-16 w-full bg-white">
         <div className="max-w-screen-2xl mx-auto">
-          <div className="w-full bg-gradient-to-br from-[#111] to-gray-900 rounded-[4rem] p-12 md:p-24 flex flex-col md:flex-row items-center justify-between text-white shadow-2xl relative overflow-hidden">
+          <div className="w-full bg-gradient-to-br from-[#111] to-gray-900 rounded-[4rem] p-12 md:p-24 flex flex-col md:flex-row items-center justify-between text-white shadow-2xl relative overflow-hidden border border-white/5">
             <div className="md:w-2/3 relative z-10 text-center md:text-left">
               <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-[0.9]">
                 Fuel Your <br /> <span className="text-orange-500 italic">Success.</span>
@@ -195,9 +191,11 @@ const Industries = () => {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #f97316; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fadeIn { animation: fadeIn 0.7s ease-out forwards; }
+        .animate-fadeIn { animation: fadeIn 0.8s ease-out forwards; }
       `}} />
     </div>
   );

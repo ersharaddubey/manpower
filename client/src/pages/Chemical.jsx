@@ -2,8 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-// 1. PORTS ko bahar move kiya taaki useEffect dependency warning na de
-const PORTS = ['/api', 'http://localhost:5000'];
+// Production mein Vercel khud /api handle karta hai, isliye base empty rahega.
+// Localhost par hum manual port 5000 use karenge.
+const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000';
 
 const Chemical = () => {
   const [posts, setPosts] = useState([]);
@@ -11,39 +12,37 @@ const Chemical = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 2. fetch logic ko useCallback mein wrap kiya
   const fetchChemicalPosts = useCallback(async () => {
     setLoading(true);
     setError(null);
     let foundData = [];
 
-    for (let baseUrl of PORTS) {
-      try {
-        // Try lowercase 'chemical'
-        let res = await axios.get(`${baseUrl}/api/blog/chemical`);
+    // Dono cases try karenge taaki database mismatch na ho
+    const categories = ['chemical', 'Chemical'];
+
+    try {
+      for (let cat of categories) {
+        // Correct Path: BASE_URL + /api/blog/category
+        const response = await axios.get(`${BASE_URL}/api/blog/${cat}`);
         
-        // If empty, try Capital 'Chemical'
-        if (!res.data || res.data.length === 0) {
-          res = await axios.get(`${baseUrl}/api/blog/Chemical`);
+        if (response.data && response.data.length > 0) {
+          foundData = response.data;
+          break; // Data milte hi loop se bahar
         }
-
-        if (res.data && res.data.length > 0) {
-          foundData = res.data;
-          window.WORKING_BASE_URL = baseUrl; 
-          break; 
-        }
-      } catch (err) {
-        console.error(`Failed to fetch from ${baseUrl}:`, err.message);
       }
-    }
 
-    if (foundData.length > 0) {
-      setPosts(foundData);
-      setSelectedPost(foundData[0]);
-    } else {
-      setError("Chemical database offline. Please check Backend or Admin categories.");
+      if (foundData.length > 0) {
+        setPosts(foundData);
+        setSelectedPost(foundData[0]);
+      } else {
+        setError("Chemical database records not found. Verify category in Admin panel.");
+      }
+    } catch (err) {
+      console.error("Fetch Error:", err.message);
+      setError("Network error: Could not reach the server.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -51,11 +50,12 @@ const Chemical = () => {
   }, [fetchChemicalPosts]);
 
   const getImageUrl = (imagePath) => {
-    const base = window.WORKING_BASE_URL || '/api';
     if (!imagePath) return "https://via.placeholder.com/1200x600?text=Rhodeotech+Chemical+Solutions";
     if (imagePath.startsWith('http')) return imagePath;
+    
+    // Relative path handling
     const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-    return `${base}${cleanPath}`;
+    return `${BASE_URL}${cleanPath}`;
   };
 
   if (loading) return (
@@ -82,7 +82,6 @@ const Chemical = () => {
       </header>
 
       <main className="max-w-screen-2xl mx-auto px-6 md:px-16 py-16">
-        {/* 3. FIXED: Error state rendered to resolve "unused-vars" warning */}
         {error && (
           <div className="mb-10 p-8 bg-emerald-50 border-l-4 border-emerald-500 rounded-3xl flex justify-between items-center">
             <div>

@@ -2,35 +2,43 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-// Base URL ko bahar rakhne se useEffect ki dependency warning nahi aati
-const BASE_URL = '/api';
+// Production (Vercel) par empty string use hoga taaki relative path '/api/blog/...' bane
+// Local par http://localhost:5000 use hoga
+const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000';
 
 const Electrical = () => {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // Ab ise UI mein show karenge
+  const [error, setError] = useState(null);
 
-  // fetch function ko useCallback mein wrap kiya taaki dependency warning fix ho jaye
   const fetchElectricalPosts = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    let foundData = [];
+
+    // Case-sensitivity handle karne ke liye variations
+    const categories = ['electrical', 'Electrical'];
+
     try {
-      setLoading(true);
-      setError(null);
-      
-      // Step 1: Small 'electrical' try karein
-      let res = await axios.get(`${BASE_URL}/api/blog/electrical`);
-      
-      if (res.data && res.data.length > 0) {
-        setPosts(res.data);
-        setSelectedPost(res.data[0]);
+      for (let cat of categories) {
+        // Correct Path: /api/blog/category
+        const res = await axios.get(`${BASE_URL}/api/blog/${cat}`);
+        
+        if (res.data && res.data.length > 0) {
+          foundData = res.data;
+          break; 
+        }
+      }
+
+      if (foundData.length > 0) {
+        setPosts(foundData);
+        setSelectedPost(foundData[0]);
       } else {
-        // Step 2: Agar nahi mila toh Capital 'Electrical' try karein
-        const resCapital = await axios.get(`${BASE_URL}/api/blog/Electrical`);
-        setPosts(resCapital.data);
-        if (resCapital.data.length > 0) setSelectedPost(resCapital.data[0]);
+        setError("Electrical database records not found. Verify category in Admin.");
       }
     } catch (err) {
-      console.error("Fetch Error:", err);
+      console.error("Fetch Error:", err.message);
       setError("Grid connectivity issue. Please check your server.");
     } finally {
       setLoading(false);
@@ -71,11 +79,10 @@ const Electrical = () => {
       </header>
 
       <main className="max-w-screen-2xl mx-auto px-6 md:px-16 py-16">
-        {/* Error State Display (Handling 'error' is assigned a value but never used) */}
         {error && (
-          <div className="mb-8 p-6 bg-red-50 border-l-4 border-red-500 rounded-2xl">
+          <div className="mb-8 p-6 bg-red-50 border-l-4 border-red-500 rounded-2xl flex justify-between items-center">
             <p className="text-red-700 font-bold">{error}</p>
-            <button onClick={fetchElectricalPosts} className="mt-2 text-sm underline font-black text-red-500 uppercase">Retry Connection</button>
+            <button onClick={fetchElectricalPosts} className="px-4 py-1 bg-red-500 text-white rounded-lg text-xs font-black uppercase">Retry</button>
           </div>
         )}
 
@@ -83,7 +90,7 @@ const Electrical = () => {
           <div className="xl:w-2/3">
             {selectedPost ? (
               <article className="animate-fadeIn transition-all duration-500">
-                <div className="rounded-[3rem] overflow-hidden bg-gray-100 mb-12 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] group">
+                <div className="rounded-[3rem] overflow-hidden bg-gray-100 mb-12 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] group border border-gray-100">
                   <img 
                     src={getImageUrl(selectedPost.image)} 
                     alt={selectedPost.title}
@@ -115,7 +122,7 @@ const Electrical = () => {
               <div className="py-40 text-center bg-gray-50 rounded-[3rem] border-2 border-dashed border-gray-200">
                 <div className="text-6xl mb-6 opacity-20">🔌</div>
                 <h3 className="text-2xl font-black text-gray-300 uppercase tracking-widest">No Posts Found</h3>
-                <p className="text-gray-400 mt-2">Database mein 'electrical' category ke posts nahi mile.</p>
+                <p className="text-gray-400 mt-2 max-w-xs mx-auto">Make sure the category name in Admin matches "electrical".</p>
               </div>
             )}
           </div>
@@ -124,7 +131,7 @@ const Electrical = () => {
             <div className="sticky top-12 space-y-8">
               <div className="flex items-center justify-between border-b border-gray-100 pb-6">
                 <h3 className="text-sm font-black uppercase tracking-[0.3em] text-gray-400">Reports Archive</h3>
-                <span className="h-2 w-2 bg-orange-500 rounded-full animate-ping"></span>
+                <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-3 py-1 rounded-full">{posts.length} Posts</span>
               </div>
               
               <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-4 custom-scrollbar">
@@ -171,7 +178,7 @@ const Electrical = () => {
                 Fuel the Grid <br /> <span className="text-orange-500">Join Rhodeotech.</span>
               </h2>
               <p className="text-gray-400 text-xl mb-12 max-w-xl font-medium mx-auto md:mx-0">
-                We are actively looking for certified electricians and grid engineers to lead our next industrial project.
+                Join our network of power engineers and safety specialists working on critical industrial infrastructure.
               </p>
               <Link to="/careers">
                 <button className="bg-orange-600 text-white px-16 py-6 rounded-2xl font-black text-xl hover:bg-white hover:text-orange-600 transition-all transform hover:-translate-y-1 shadow-2xl active:scale-95 uppercase tracking-widest">
@@ -193,6 +200,8 @@ const Electrical = () => {
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fadeIn { animation: fadeIn 0.8s ease-out forwards; }
       `}} />
     </div>
   );
