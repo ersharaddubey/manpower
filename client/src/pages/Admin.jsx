@@ -75,7 +75,7 @@ const AdminPanel = () => {
           data.append('title', formData.title);
           data.append('description', formData.description);
           if (file) data.append('image', file);
-          await axios.post('/api/api/admin/blog', data);
+          await axios.post('/api/admin/blog', data);
         }
         alert("Published Successfully!");
       }
