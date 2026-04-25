@@ -17,8 +17,8 @@ const AdminPanel = () => {
   const fetchItems = useCallback(async () => {
     try {
       const url = postType === 'job' 
-        ? '/api/api/jobs' 
-        : `/api/api/blog/${category}`;
+        ? '/api/jobs' 
+        : `/api/blog/${category}`;
       const res = await axios.get(url);
       setItems(Array.isArray(res.data) ? res.data : []);
     } catch (err) { 
@@ -30,7 +30,7 @@ const AdminPanel = () => {
   // 2. fetchInquiries also wrapped in useCallback
   const fetchInquiries = useCallback(async () => {
     try {
-      const res = await axios.get('/api/api/contact');
+      const res = await axios.get('/api/contact');
       const data = Array.isArray(res.data) ? res.data : (res.data.inquiries || []);
       setInquiries(data);
     } catch (err) { 
@@ -64,11 +64,11 @@ const AdminPanel = () => {
       if (isEditing) {
         const endpoint = postType === 'job' ? `jobs/${editId}` : `blog/${editId}`;
         // Fixed: axios patch returns data we might use, but for now direct await is fine
-        await axios.patch(`/api/api/admin/${endpoint}`, formData);
+        await axios.patch(`/api/admin/${endpoint}`, formData);
         alert("Updated Successfully!");
       } else {
         if (postType === 'job') {
-          await axios.post('/api/api/admin/jobs', formData);
+          await axios.post('/api/admin/jobs', formData);
         } else {
           const data = new FormData();
           data.append('category', category); 
@@ -94,7 +94,7 @@ const AdminPanel = () => {
     if (window.confirm("Kyan aap ise delete karna chahte hain?")) {
       try {
         const endpoint = type === 'inquiry' ? 'contact' : (postType === 'job' ? 'jobs' : 'blog');
-        await axios.delete(`/api/api/admin/${endpoint}/${id}`);
+        await axios.delete(`/api/admin/${endpoint}/${id}`);
         type === 'inquiry' ? fetchInquiries() : fetchItems();
         alert("Deleted Successfully!");
       } catch (err) { 

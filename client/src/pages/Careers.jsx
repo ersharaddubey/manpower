@@ -14,7 +14,7 @@ const Careers = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await axios.get('/api/api/jobs');
+        const res = await axios.get('/api/jobs');
         setJobs(res.data);
         setFilteredJobs(res.data);
         setLoading(false);
