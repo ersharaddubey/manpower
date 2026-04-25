@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 // 1. PORTS ko component ke bahar rakha hai taaki dependency warning na aaye
-const PORTS = ['http://localhost:5001', 'http://localhost:5000'];
+const PORTS = ['/api', 'http://localhost:5000'];
 
 const Industries = () => {
   const [posts, setPosts] = useState([]);
@@ -52,7 +52,7 @@ const Industries = () => {
   }, [fetchIndustryPosts]);
 
   const getImageUrl = (imagePath) => {
-    const base = window.WORKING_BASE_URL || 'http://localhost:5001';
+    const base = window.WORKING_BASE_URL || '/api';
     if (!imagePath) return "https://via.placeholder.com/1200x600?text=Rhodeotech+Industries+Insights";
     if (imagePath.startsWith('http')) return imagePath;
     const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;

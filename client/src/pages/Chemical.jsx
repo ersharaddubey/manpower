@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 // 1. PORTS ko bahar move kiya taaki useEffect dependency warning na de
-const PORTS = ['http://localhost:5001', 'http://localhost:5000'];
+const PORTS = ['/api', 'http://localhost:5000'];
 
 const Chemical = () => {
   const [posts, setPosts] = useState([]);
@@ -51,7 +51,7 @@ const Chemical = () => {
   }, [fetchChemicalPosts]);
 
   const getImageUrl = (imagePath) => {
-    const base = window.WORKING_BASE_URL || 'http://localhost:5001';
+    const base = window.WORKING_BASE_URL || '/api';
     if (!imagePath) return "https://via.placeholder.com/1200x600?text=Rhodeotech+Chemical+Solutions";
     if (imagePath.startsWith('http')) return imagePath;
     const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;

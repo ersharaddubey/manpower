@@ -157,7 +157,7 @@ app.post('/api/admin/blog', upload.single('image'), async (req, res) => {
       description,
       date: date || new Date().toLocaleDateString(),
       // Image path ko 5001 par set kiya
-      image: req.file ? `http://localhost:5001/uploads/${req.file.filename}` : null
+      image: req.file ? `/api/uploads/${req.file.filename}` : null
     });
 
     const savedPost = await newPost.save();

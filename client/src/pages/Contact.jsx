@@ -19,7 +19,7 @@ const Contact = () => {
     
     try {
       // YE LINE DATA BACKEND KO BHEJEGI
-      const res = await axios.post('http://localhost:5001/api/contact', formData);
+      const res = await axios.post('/api/api/contact', formData);
       
       if (res.status === 201 || res.status === 200) {
         alert("Inquiry Sent Successfully! Admin Panel check karein.");

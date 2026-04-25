@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 // Base URL ko bahar rakhne se useEffect ki dependency warning nahi aati
-const BASE_URL = 'http://localhost:5001';
+const BASE_URL = '/api';
 
 const Electrical = () => {
   const [posts, setPosts] = useState([]);

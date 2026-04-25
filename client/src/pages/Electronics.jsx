@@ -7,7 +7,7 @@ const Electronics = () => {
   const [selectedPost, setSelectedPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const BASE_URL = 'http://localhost:5001';
+  const BASE_URL = '/api';
 
   useEffect(() => {
     const fetchPosts = async () => {
