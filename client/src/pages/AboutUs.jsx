@@ -4,7 +4,7 @@ const leaderProfiles = [
   { 
     name: 'Mayank Doultani', 
     role: 'CEO & Co-Founder',
-    desc: 'Driving the vision for Rhodeotech, Mayank combines deep IT consultancy with strategic manpower leadership. His focus is on pioneering industry-specific tech and sourcing.Driving the vision for Rhodeotech, Mayank combines deep IT consultancy with strategic manpower leadership. His focus is on pioneering industry-specific tech and sourcing.Driving the vision for Rhodeotech, Mayank combines deep IT consultancy with strategic manpower leadership. His focus is on pioneering industry-specific tech and sourcing.',
+    desc: 'Driving the vision for sclerahunt, Mayank combines deep IT consultancy with strategic manpower leadership. His focus is on pioneering industry-specific tech and sourcing.Driving the vision for sclerahunt, Mayank combines deep IT consultancy with strategic manpower leadership. His focus is on pioneering industry-specific tech and sourcing.Driving the vision for sclerahunt, Mayank combines deep IT consultancy with strategic manpower leadership. His focus is on pioneering industry-specific tech and sourcing.',
     iconPlaceholder: '👤' // image placeholder placeholder
   },
   { 
@@ -20,7 +20,7 @@ const about = () => {
     <section className="py-24 bg-white px-4 border-y border-gray-100">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-5xl font-extrabold text-center text-[#1C1C1C] mb-5 tracking-tighter">
-          The Rhodeotech <span className="text-orange-600">Vanguard</span>
+          The sclerahunt <span className="text-orange-600">Vanguard</span>
         </h2>
         <p className="text-center text-gray-600 max-w-lg mx-auto mb-20 text-lg leading-relaxed">
           Driven by expertise, our leadership anchors innovative delivery and client success across IT and manpower sectors.

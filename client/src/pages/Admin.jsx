@@ -109,7 +109,7 @@ const AdminPanel = () => {
       <div className="w-80 bg-black text-white p-8 fixed h-full shadow-2xl overflow-y-auto">
         <div className="mt-16 mb-12">
           <h2 className="text-2xl font-black text-orange-500 tracking-tighter leading-none">
-            Rhodeotech <br /> <span className="text-white text-4xl">ADMIN</span>
+            sclerahunt <br /> <span className="text-white text-4xl">ADMIN</span>
           </h2>
         </div>
         

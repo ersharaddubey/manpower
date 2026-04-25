@@ -50,7 +50,7 @@ const Chemical = () => {
   }, [fetchChemicalPosts]);
 
   const getImageUrl = (imagePath) => {
-    if (!imagePath) return "https://via.placeholder.com/1200x600?text=Rhodeotech+Chemical+Solutions";
+    if (!imagePath) return "https://via.placeholder.com/1200x600?text=sclerahunt+Chemical+Solutions";
     if (imagePath.startsWith('http')) return imagePath;
     
     // Relative path handling

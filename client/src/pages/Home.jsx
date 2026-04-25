@@ -30,11 +30,11 @@ const Home = () => {
               WE FIND <br /> THE <span className="text-orange-600 italic">UNFINDABLE.</span>
             </h1>
             <p className="text-gray-500 text-xl max-w-lg mb-10 leading-relaxed font-medium border-l-4 border-gray-100 pl-6">
-              Rhodeotech is the premier bridge between global industrial ambition and specialized manpower excellence.
+              sclerahunt is the premier bridge between global industrial ambition and specialized manpower excellence.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link to="/careers" className="bg-gray-950 text-white px-12 py-6 rounded-2xl font-black hover:bg-orange-600 transition-all text-lg shadow-2xl shadow-gray-300">
-                Hire Talent
+              <Link to="/contact" className="bg-gray-950 text-white px-12 py-6 rounded-2xl font-black hover:bg-orange-600 transition-all text-lg shadow-2xl shadow-gray-300">
+                Hire Manpower
               </Link>
               <button className="bg-white text-gray-950 border-2 border-gray-100 px-12 py-6 rounded-2xl font-black hover:bg-gray-50 transition-all text-lg">
                 Our Story
@@ -105,7 +105,7 @@ const Home = () => {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-400 italic">Engineering.</span>
             </h2>
             <p className="text-gray-600 text-xl max-w-xl mb-12 leading-relaxed font-medium">
-              We don't just fill positions; we engineer teams. Rhodeotech specializes in sourcing elite technical talent for high-stakes industrial ecosystems.
+              We don't just fill positions; we engineer teams. sclerahunt specializes in sourcing elite technical talent for high-stakes industrial ecosystems.
             </p>
             <div className="flex items-center gap-6">
               <Link to="/careers" className="bg-gray-950 text-white px-10 py-5 rounded-2xl font-black hover:bg-orange-600 transition-all shadow-xl">
@@ -216,8 +216,8 @@ const Home = () => {
       <section className="py-32 bg-gray-950 text-white px-6">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-24">
           <div className="lg:w-1/2">
-            <h2 className="text-6xl font-black mb-8 tracking-tighter leading-none">Looking for <br /><span className="text-orange-500 italic">Custom Solutions?</span></h2>
-            <p className="text-gray-400 text-xl mb-12 font-medium leading-relaxed">Schedule a specialized consultation call with our placement experts to discuss your niche manpower requirements.</p>
+            <h2 className="text-6xl font-black mb-8 tracking-tighter leading-none">Your Industrial <br /><span className="text-orange-500 italic">Solution Partner</span></h2>
+            <p className="text-gray-400 text-xl mb-12 font-medium leading-relaxed">Schedule a call with our experts to discuss your specific manpower needs and find the right talent today.</p>
             <div className="flex items-center gap-6 p-8 bg-white/5 rounded-3xl border border-white/10 max-w-sm">
                <div className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-3xl shadow-xl shadow-orange-600/20">📞</div>
                <div>
@@ -238,7 +238,7 @@ const Home = () => {
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-4">Target Industry</label>
-                <select className="w-full p-6 bg-gray-50 rounded-2xl border-none focus:ring-4 focus:ring-orange-100 transition-all font-bold appearance-none">
+                <select className="w-full p-6 bg-gray-500 rounded-2xl border-none focus:ring-4 focus:ring-orange-100 transition-all font-bold appearance-none">
                   <option>Renewable Energy</option>
                   <option>Medical Electronics</option>
                   <option>Heavy Manufacturing</option>
@@ -257,8 +257,8 @@ const Home = () => {
       <section className="py-32 px-6 bg-white">
         <div className="max-w-7xl mx-auto bg-gradient-to-br from-orange-500 to-orange-700 rounded-[4rem] p-20 text-center text-white shadow-2xl shadow-orange-200 relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
-          <h2 className="text-5xl md:text-8xl font-black mb-8 tracking-tighter leading-none relative z-10">READY TO HIRE <br />GLOBAL TALENT?</h2>
-          <p className="text-2xl text-orange-100 mb-12 max-w-3xl mx-auto font-medium relative z-10 leading-relaxed">Join the league of global leaders who rely on Rhodeotech for their most critical workforce challenges.</p>
+          <h2 className="text-5xl md:text-8xl font-black mb-8 tracking-tighter leading-none relative z-10">READY TO PROVIDE <br />GLOBAL TALENT?  <br />FOR INDUSTRY</h2>
+          <p className="text-2xl text-orange-100 mb-12 max-w-3xl mx-auto font-medium relative z-10 leading-relaxed">Join the league of global leaders who rely on sclerahunt for their most critical workforce challenges.</p>
           <Link to="/contact" className="bg-white text-orange-700 px-16 py-7 rounded-2xl font-black text-2xl hover:scale-105 transition-transform shadow-2xl inline-block relative z-10 uppercase tracking-tighter">
             Get Started Today
           </Link>

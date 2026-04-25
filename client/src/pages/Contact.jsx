@@ -41,7 +41,7 @@ const Contact = () => {
   const contactMethods = [
     { icon: "📍", title: "Global Headquarters", detail: "Belapur, Navi Mumbai", desc: "Technical sourcing hub." },
     { icon: "📞", title: "Direct Line", detail: "+91 98XXX XXXXX", desc: "Mon-Fri, 9am - 6pm." },
-    { icon: "📧", title: "Email Support", detail: "contact@Rhodeotechsolutions.com", desc: "Manpower inquiries." }
+    { icon: "📧", title: "Email Support", detail: "contact@sclerahuntsolutions.com", desc: "Manpower inquiries." }
   ];
 
   return (

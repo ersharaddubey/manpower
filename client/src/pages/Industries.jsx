@@ -50,7 +50,7 @@ const Industries = () => {
   }, [fetchIndustryPosts]);
 
   const getImageUrl = (imagePath) => {
-    if (!imagePath) return "https://via.placeholder.com/1200x600?text=Rhodeotech+Industries+Insights";
+    if (!imagePath) return "https://via.placeholder.com/1200x600?text=sclerahunt+Industries+Insights";
     if (imagePath.startsWith('http')) return imagePath;
     const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
     return `${BASE_URL}${cleanPath}`;
@@ -177,7 +177,7 @@ const Industries = () => {
                 Fuel Your <br /> <span className="text-orange-500 italic">Success.</span>
               </h2>
               <p className="text-gray-400 text-xl mb-12 max-w-xl font-medium mx-auto md:mx-0 leading-relaxed">
-                Rhodeotech provides the world-class professionals your project demands.
+                sclerahunt provides the world-class professionals your project demands.
               </p>
               <Link to="/careers">
                 <button className="bg-orange-600 text-white px-16 py-6 rounded-2xl font-black text-xl hover:bg-white hover:text-gray-950 transition-all transform hover:-translate-y-1 shadow-2xl active:scale-95 uppercase tracking-widest">

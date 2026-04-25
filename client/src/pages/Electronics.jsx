@@ -49,7 +49,7 @@ const Electronics = () => {
   }, [fetchElectronicsPosts]);
 
   const getImageUrl = (imagePath) => {
-    if (!imagePath) return "https://via.placeholder.com/1200x600?text=Rhodeotech+Electronics+Update";
+    if (!imagePath) return "https://via.placeholder.com/1200x600?text=sclerahunt+Electronics+Update";
     if (imagePath.startsWith('http')) return imagePath;
     const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
     return `${BASE_URL}${cleanPath}`;

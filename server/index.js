@@ -217,7 +217,7 @@ app.post('/api/apply', upload.single('resume'), async (req, res) => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: 'dubeysharad950@gmail.com',
-      subject: `Rhodeotech - New Application: ${name}`,
+      subject: `sclerahunt - New Application: ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nJob ID: ${jobId}`,
       attachments: [{ filename: req.file.originalname, path: req.file.path }]
     };
@@ -281,7 +281,7 @@ app.patch('/api/admin/blog/:id', async (req, res) => {
 const PORT = 5001; 
 app.listen(PORT, () => {
   console.log(`-----------------------------------------`);
-  console.log(`🚀 Rhodeotech BACKEND ACTIVE ON PORT: ${PORT}`);
+  console.log(`🚀 sclerahunt BACKEND ACTIVE ON PORT: ${PORT}`);
   console.log(`✅ MongoDB Connection Check...`);
   console.log(`-----------------------------------------`);
 });

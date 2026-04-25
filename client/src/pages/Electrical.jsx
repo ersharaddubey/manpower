@@ -50,7 +50,7 @@ const Electrical = () => {
   }, [fetchElectricalPosts]);
 
   const getImageUrl = (imagePath) => {
-    if (!imagePath) return "https://via.placeholder.com/1200x600?text=Rhodeotech+Electrical+Insight";
+    if (!imagePath) return "https://via.placeholder.com/1200x600?text=sclerahunt+Electrical+Insight";
     if (imagePath.startsWith('http')) return imagePath;
     const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
     return `${BASE_URL}${cleanPath}`;
@@ -68,7 +68,7 @@ const Electrical = () => {
       <header className="pt-24 pb-12 px-6 md:px-16 border-b border-gray-100 bg-white">
         <div className="max-w-screen-2xl mx-auto">
           <div className="flex items-center gap-2 text-xs text-gray-400 mb-4 font-bold uppercase tracking-[0.3em]">
-            <span>Rhodeotech Industries</span>
+            <span>sclerahunt Industries</span>
             <span className="text-orange-500">/</span>
             <span className="text-gray-900">Electrical Division</span>
           </div>
@@ -175,7 +175,7 @@ const Electrical = () => {
           <div className="w-full bg-gradient-to-br from-gray-950 via-gray-900 to-black rounded-[4rem] p-12 md:p-24 flex flex-col md:flex-row items-center justify-between text-white shadow-[0_50px_100px_-20px_rgba(0,0,0,0.4)] relative overflow-hidden border border-white/5">
             <div className="md:w-2/3 relative z-10 text-center md:text-left">
               <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-[0.9]">
-                Fuel the Grid <br /> <span className="text-orange-500">Join Rhodeotech.</span>
+                Fuel the Grid <br /> <span className="text-orange-500">Join sclerahunt.</span>
               </h2>
               <p className="text-gray-400 text-xl mb-12 max-w-xl font-medium mx-auto md:mx-0">
                 Join our network of power engineers and safety specialists working on critical industrial infrastructure.

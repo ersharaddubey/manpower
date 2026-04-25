@@ -34,7 +34,7 @@ const Navbar = () => {
           
           {/* Logo */}
           <Link to="/" className="flex items-center gap-1 group">
-            <span className="text-3xl font-black tracking-tighter text-gray-950 group-hover:text-orange-600 transition-colors">Rhodeotech</span>
+            <span className="text-3xl font-black tracking-tighter text-gray-950 group-hover:text-orange-600 transition-colors">sclerahunt</span>
             <span className="h-2 w-2 rounded-full bg-orange-600 mt-2 animate-pulse"></span>
           </Link>
 
