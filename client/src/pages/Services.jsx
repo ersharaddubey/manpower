@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
-const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000';
+const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5001';
 
 const Services = () => {
   // Removed 'posts' to fix the ESLint build error

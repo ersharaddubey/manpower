@@ -156,8 +156,8 @@ app.post('/api/admin/blog', upload.single('image'), async (req, res) => {
       title,
       description,
       date: date || new Date().toLocaleDateString(),
-      // Image path ko 5001 par set kiya
-      image: req.file ? `/api/uploads/${req.file.filename}` : null
+      // Fixed: Path should match the static route '/uploads'
+      image: req.file ? `/uploads/${req.file.filename}` : null
     });
 
     const savedPost = await newPost.save();
@@ -271,9 +271,14 @@ app.patch('/api/admin/jobs/:id', async (req, res) => {
 });
 
 // Blog update karne ke liye
-app.patch('/api/admin/blog/:id', async (req, res) => {
+// Added upload.single('image') to support file updates via PATCH
+app.patch('/api/admin/blog/:id', upload.single('image'), async (req, res) => {
   try {
-    const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updateData = { ...req.body };
+    if (req.file) {
+      updateData.image = `/uploads/${req.file.filename}`;
+    }
+    const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, updateData, { new: true });
     res.json(updatedBlog);
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
