@@ -77,11 +77,15 @@ const AdminPanel = () => {
 
       if (isEditing) {
         const endpoint = isBlog ? `blog/${editId}` : `jobs/${editId}`;
-        await axios.patch(`${BASE_URL}/api/admin/${endpoint}`, payload);
+        await axios.patch(`${BASE_URL}/api/admin/${endpoint}`, payload, {
+          headers: isBlog ? { 'Content-Type': 'multipart/form-data' } : {}
+        });
         alert("Updated Successfully!");
       } else {
         const endpoint = isBlog ? 'blog' : 'jobs';
-        await axios.post(`${BASE_URL}/api/admin/${endpoint}`, payload);
+        await axios.post(`${BASE_URL}/api/admin/${endpoint}`, payload, {
+          headers: isBlog ? { 'Content-Type': 'multipart/form-data' } : {}
+        });
         alert("Published Successfully!");
       }
 
@@ -92,8 +96,8 @@ const AdminPanel = () => {
       setEditId(null);
       if (activeTab === 'manage') fetchItems();
     } catch (err) { 
-      console.error("Submission Error:", err.response?.data || err.message);
-      alert(err.response?.data?.message || "Action Failed. Check console for details."); 
+      console.error("Submission Error:", err.response?.data || err);
+      alert(err.response?.data?.message || err.message || "Action Failed."); 
     }
   };
 

@@ -109,16 +109,6 @@ app.delete('/api/admin/contact/:id', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-app.get('/api/blog/:category', async (req, res) => {
-  try {
-    const { category } = req.params;
-    // 'i' flag lagane se Case-sensitive issue khatam ho jayega
-    const posts = await Blog.find({ category: { $regex: new RegExp(category, "i") } }).sort({ _id: -1 });
-    res.json(posts);
-  } catch (err) {
-    res.status(500).json({ message: "Error fetching category data" });
-  }
-});
 // --- FILE UPLOAD SETUP (MULTER) ---
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -166,17 +156,6 @@ app.post('/api/admin/blog', upload.single('image'), async (req, res) => {
   } catch (err) {
     console.error("Post Error:", err.message);
     res.status(500).json({ message: "Failed to publish blog", error: err.message });
-  }
-});
-
-// 2. CLIENT: Get Blogs by Category
-app.get('/api/blog/:category', async (req, res) => {
-  try {
-    const { category } = req.params;
-    const posts = await Blog.find({ category: category }).sort({ _id: -1 });
-    res.json(posts);
-  } catch (err) {
-    res.status(500).json({ message: "Error fetching category data" });
   }
 });
 
@@ -282,6 +261,17 @@ app.patch('/api/admin/blog/:id', upload.single('image'), async (req, res) => {
     res.json(updatedBlog);
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
+
+// --- GLOBAL ERROR HANDLER (Add this before app.listen) ---
+app.use((err, req, res, next) => {
+  console.error("🔥 Server Error:", err.stack);
+  // If Multer error, provide a clearer message
+  if (err instanceof multer.MulterError) {
+    return res.status(400).json({ message: `Upload Error: ${err.message}` });
+  }
+  res.status(500).json({ message: err.message || "Internal Server Error" });
+});
+
 // --- SERVER INITIALIZATION (PORT 5001) ---
 const PORT = 5001; 
 app.listen(PORT, () => {
