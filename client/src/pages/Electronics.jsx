@@ -49,7 +49,7 @@ const Services = () => {
   }, [fetchServicesPosts]);
 
   const getImageUrl = (imagePath) => {
-    if (!imagePath) return "https://via.placeholder.com/1200x600?text=sclerahunt+Services+Update";
+    if (!imagePath) return "https://via.placeholder.com/1200x600?text=workfource+Services+Update";
     if (imagePath.startsWith('http')) return imagePath;
     const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
     return `${BASE_URL}${cleanPath}`;

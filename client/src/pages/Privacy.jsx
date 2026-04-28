@@ -9,7 +9,7 @@ const Privacy = () => {
         <div className="space-y-12 text-gray-600 leading-relaxed font-medium">
           <section>
             <h2 className="text-xl font-black text-gray-900 uppercase tracking-widest mb-4">1. Data Collection</h2>
-            <p>At sclerahunt Solutions, we collect personal information such as names, email addresses, and professional backgrounds solely for the purpose of technical recruitment and industrial manpower sourcing. This data is handled with the highest level of encryption.</p>
+            <p>At workfource Solutions, we collect personal information such as names, email addresses, and professional backgrounds solely for the purpose of technical recruitment and industrial manpower sourcing. This data is handled with the highest level of encryption.</p>
           </section>
 
           <section>

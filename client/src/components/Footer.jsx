@@ -9,7 +9,7 @@ const Footer = () => {
         {/* Brand Section */}
         <div className="col-span-1 md:col-span-1">
           <h4 className="text-white text-3xl font-black tracking-tighter mb-6">
-            sclerahunt<span className="text-orange-600">.</span>
+            workfource<span className="text-orange-600">.</span>
           </h4>
           <p className="text-sm font-medium leading-relaxed opacity-70">
             Global manpower solutions for technical industries. Finding elite talent for high-stakes projects worldwide.
@@ -53,7 +53,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-[10px] font-black uppercase tracking-widest opacity-40">
-          © 2026 sclerahunt Solutions. Engineered by Sharad Dubey.
+          © 2026 workfource Solutions. Engineered by Sharad Dubey.
         </p>
         <div className="flex gap-6 text-[10px] font-black uppercase tracking-widest">
           {/* FIXED: Href value updated to avoid ESLint warning */}

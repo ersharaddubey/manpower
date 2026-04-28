@@ -196,7 +196,7 @@ app.post('/api/apply', upload.single('resume'), async (req, res) => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: 'dubeysharad950@gmail.com',
-      subject: `sclerahunt - New Application: ${name}`,
+      subject: `workfource - New Application: ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nJob ID: ${jobId}`,
       attachments: [{ filename: req.file.originalname, path: req.file.path }]
     };
@@ -276,7 +276,7 @@ app.use((err, req, res, next) => {
 const PORT = 5001; 
 app.listen(PORT, () => {
   console.log(`-----------------------------------------`);
-  console.log(`🚀 sclerahunt BACKEND ACTIVE ON PORT: ${PORT}`);
+  console.log(`🚀 workfource BACKEND ACTIVE ON PORT: ${PORT}`);
   console.log(`✅ MongoDB Connection Check...`);
   console.log(`-----------------------------------------`);
 });
