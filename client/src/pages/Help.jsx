@@ -3,7 +3,7 @@ import React from 'react';
 const Help = () => {
   const faqs = [
     { q: "How do I apply for technical roles?", a: "Navigate to the Careers section, select your sector, and upload your resume via the application portal." },
-    { q: "What sectors do you cover?", a: "We specialize in Electronics, Electrical, Chemical, and General Industrial manpower solutions." },
+    { q: "What sectors do you cover?", a: "We specialize in Services, Electrical, Chemical, and General Industrial manpower solutions." },
     { q: "How long does it take to process an inquiry?", a: "Our technical team usually responds to industrial requests within 24-48 business hours." }
   ];
 
