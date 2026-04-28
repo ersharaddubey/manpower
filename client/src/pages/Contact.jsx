@@ -100,7 +100,7 @@ const Contact = () => {
                   <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-4">Target Sector</label>
                   <select name="sector" value={formData.sector} onChange={handleChange} className="w-full p-5 bg-gray-50 rounded-2xl border-none focus:ring-4 focus:ring-orange-100 font-bold">
                     <option value="Electrical Manpower">Electrical Manpower</option>
-                    <option value="Electronics Sourcing">Electronics Sourcing</option>
+                    <option value="Services">Services</option>
                     <option value="Chemical Engineering">Chemical Engineering</option>
                     <option value="Industrial Staffing">Industrial Staffing</option>
                   </select>

@@ -151,10 +151,10 @@ const Home = () => {
         </div>
 
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['Electrical', 'Electronics', 'Chemical', 'Industries'].map((cat) => (
+          {['Electrical', 'Services', 'Chemical', 'Industries'].map((cat) => (
             <Link key={cat} to={`/${cat.toLowerCase()}`} className="group relative h-96 bg-gray-50 rounded-[3rem] p-10 flex flex-col justify-end border border-gray-100 hover:bg-gray-950 transition-all duration-500 overflow-hidden">
               <div className="absolute top-10 right-10 text-4xl opacity-10 group-hover:opacity-100 group-hover:text-orange-500 transition-all duration-500">
-                {cat === 'Electrical' ? '⚡' : cat === 'Electronics' ? '📟' : cat === 'Chemical' ? '⚗️' : '🏭'}
+                {cat === 'Electrical' ? '⚡' : cat === 'Services' ? '🛠️' : cat === 'Chemical' ? '⚗️' : '🏭'}
               </div>
               <h3 className="font-black uppercase tracking-tighter text-3xl text-gray-900 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 relative z-10">
                 {cat} <br /> <span className="text-sm font-bold tracking-[0.2em] text-orange-600 group-hover:text-orange-400">View Experts</span>
@@ -201,7 +201,7 @@ const Home = () => {
           <div className="bg-gray-50 rounded-[4rem] p-16 border border-gray-100 shadow-2xl relative">
             <div className="absolute -top-10 -left-10 bg-orange-600 text-white p-8 rounded-full font-black text-xl shadow-xl">✓</div>
             <div className="space-y-6">
-              {['Elite Electronics', 'Grid Electrical', 'Petro-Chemical', 'Infrastructure'].map((item) => (
+              {['Elite Services', 'Grid Electrical', 'Petro-Chemical', 'Infrastructure'].map((item) => (
                 <div key={item} className="flex justify-between items-center p-6 bg-white rounded-3xl shadow-sm border border-transparent hover:border-orange-500 transition-all group cursor-pointer">
                   <span className="font-black text-gray-800 uppercase tracking-widest text-sm">{item} Specialists</span>
                   <span className="text-orange-600 group-hover:translate-x-3 transition-transform font-black">→</span>

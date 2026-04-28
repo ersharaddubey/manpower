@@ -5,19 +5,19 @@ import { Link } from 'react-router-dom';
 // BASE_URL Strategy: Vercel par empty (relative) aur local par port 5000
 const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000';
 
-const Electronics = () => {
+const Services = () => {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchElectronicsPosts = useCallback(async () => {
+  const fetchServicesPosts = useCallback(async () => {
     setLoading(true);
     setError(null);
     let foundData = [];
 
     // Dono variations check karenge
-    const categories = ['electronics', 'Electronics'];
+    const categories = ['services', 'Services'];
 
     try {
       for (let cat of categories) {
@@ -34,22 +34,22 @@ const Electronics = () => {
         setPosts(foundData);
         setSelectedPost(foundData[0]);
       } else {
-        setError("Electronics database records not found. Verify category in Admin.");
+        setError("Services database records not found. Verify category in Admin.");
       }
     } catch (err) {
       console.error("Fetch Error:", err.message);
-      setError("Signal lost. Connectivity issue with the electronics database.");
+      setError("Connectivity issue with the services database.");
     } finally {
       setLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    fetchElectronicsPosts();
-  }, [fetchElectronicsPosts]);
+    fetchServicesPosts();
+  }, [fetchServicesPosts]);
 
   const getImageUrl = (imagePath) => {
-    if (!imagePath) return "https://via.placeholder.com/1200x600?text=sclerahunt+Electronics+Update";
+    if (!imagePath) return "https://via.placeholder.com/1200x600?text=sclerahunt+Services+Update";
     if (imagePath.startsWith('http')) return imagePath;
     const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
     return `${BASE_URL}${cleanPath}`;
@@ -58,7 +58,7 @@ const Electronics = () => {
   if (loading) return (
     <div className="h-screen flex flex-col items-center justify-center bg-white">
       <div className="w-12 h-12 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-      <p className="text-gray-400 font-black tracking-widest animate-pulse uppercase text-[10px]">Processing Circuits...</p>
+      <p className="text-gray-400 font-black tracking-widest animate-pulse uppercase text-[10px]">Loading Services...</p>
     </div>
   );
 
@@ -70,7 +70,7 @@ const Electronics = () => {
           <div className="flex items-center gap-2 text-xs text-gray-400 mb-4 font-black uppercase tracking-[0.3em]">
             <span>Industries</span>
             <span className="text-orange-500">/</span>
-            <span className="text-gray-950">Electronics Division</span>
+            <span className="text-gray-950">Services Division</span>
           </div>
           <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-gray-950 leading-[0.85]">
             Sector <br /><span className="text-orange-600 italic">Reports</span>
@@ -85,7 +85,7 @@ const Electronics = () => {
               <p className="text-orange-900 font-black uppercase text-xs tracking-widest mb-1">Status Alert</p>
               <p className="text-orange-700 font-medium">{error}</p>
             </div>
-            <button onClick={fetchElectronicsPosts} className="px-6 py-2 bg-orange-600 text-white font-black text-[10px] uppercase rounded-full">Re-Scan</button>
+            <button onClick={fetchServicesPosts} className="px-6 py-2 bg-orange-600 text-white font-black text-[10px] uppercase rounded-full">Re-Scan</button>
           </div>
         )}
 
@@ -125,7 +125,7 @@ const Electronics = () => {
               <div className="py-40 text-center bg-gray-50 rounded-[3rem] border-2 border-dashed border-gray-200">
                 <div className="text-6xl mb-6 grayscale opacity-20">📟</div>
                 <h3 className="text-2xl font-black text-gray-300 uppercase tracking-widest">Archive Empty</h3>
-                <p className="text-gray-400 mt-2 max-w-xs mx-auto">Please ensure the category is set to 'electronics' in the admin dashboard.</p>
+                <p className="text-gray-400 mt-2 max-w-xs mx-auto">Please ensure the category is set to 'services' in the admin dashboard.</p>
               </div>
             )}
           </div>
@@ -207,4 +207,4 @@ const Electronics = () => {
   );
 };
 
-export default Electronics;
+export default Services;

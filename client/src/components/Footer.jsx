@@ -31,7 +31,7 @@ const Footer = () => {
           <h4 className="text-white font-black uppercase tracking-[0.2em] text-[10px] mb-6">Industries</h4>
           <ul className="space-y-3 font-bold text-xs uppercase tracking-widest">
             <li className="hover:text-orange-500 transition-colors"><Link to="/electrical">Electrical</Link></li>
-            <li className="hover:text-orange-500 transition-colors"><Link to="/electronics">Electronics</Link></li>
+            <li className="hover:text-orange-500 transition-colors"><Link to="/services">Services</Link></li>
             <li className="hover:text-orange-500 transition-colors"><Link to="/chemical">Chemical</Link></li>
             <li className="hover:text-orange-500 transition-colors"><Link to="/industries">General Industry</Link></li>
           </ul>

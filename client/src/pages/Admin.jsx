@@ -4,7 +4,7 @@ import axios from 'axios';
 const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState('create'); 
   const [postType, setPostType] = useState('blog'); 
-  const [category, setCategory] = useState('Electronics');
+  const [category, setCategory] = useState('Services');
   const [formData, setFormData] = useState({ title: '', description: '', loc: '', salary: '', type: 'On-site' });
   const [file, setFile] = useState(null);
   const [items, setItems] = useState([]); 
@@ -127,7 +127,7 @@ const AdminPanel = () => {
              </div>
              {postType === 'blog' && (
                <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full bg-gray-900 text-white p-4 rounded-xl text-sm border border-gray-800 outline-none">
-                 <option value="Electronics">Electronics</option>
+                 <option value="Services">Services</option>
                  <option value="Electrical">Electrical</option>
                  <option value="Chemical">Chemical</option>
                  <option value="Industries">Industries</option>
