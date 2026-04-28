@@ -178,9 +178,9 @@ const Services = () => {
                 Innovate <br /> <span className="text-orange-500">With Us.</span>
               </h2>
               <p className="text-gray-400 text-xl mb-12 max-w-xl font-medium mx-auto md:mx-0">
-                Join our hardware labs and contribute to groundbreaking electronics projects across the globe.
+                Join our labs and contribute to groundbreaking services projects across the globe.
               </p>
-              <Link to="/careers">
+              <Link to="/contact"> {/* Changed to contact as careers is removed */}
                 <button className="bg-orange-600 text-white px-16 py-6 rounded-2xl font-black text-xl hover:bg-white hover:text-orange-600 transition-all transform hover:-translate-y-1 shadow-2xl uppercase tracking-widest">
                   Apply Now
                 </button>

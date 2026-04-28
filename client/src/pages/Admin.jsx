@@ -128,9 +128,6 @@ const AdminPanel = () => {
              {postType === 'blog' && (
                <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full bg-gray-900 text-white p-4 rounded-xl text-sm border border-gray-800 outline-none">
                  <option value="Services">Services</option>
-                 <option value="Electrical">Electrical</option>
-                 <option value="Chemical">Chemical</option>
-                 <option value="Industries">Industries</option>
                </select>
              )}
           </div>
