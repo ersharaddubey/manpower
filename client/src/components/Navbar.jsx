@@ -15,6 +15,7 @@ const Navbar = () => {
   // Added 'Contact' to the main navigation array
   const navLinks = [
     { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
     { name: 'Contact', path: '/contact' }, // New Link Added
   ];

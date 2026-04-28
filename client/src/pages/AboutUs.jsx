@@ -1,59 +1,84 @@
 import React from 'react';
 
-const leaderProfiles = [
-  { 
-    name: 'Mayank Doultani', 
-    role: 'CEO & Co-Founder',
-    desc: 'Driving the vision for sclerahunt, Mayank combines deep IT consultancy with strategic manpower leadership. His focus is on pioneering industry-specific tech and sourcing.Driving the vision for sclerahunt, Mayank combines deep IT consultancy with strategic manpower leadership. His focus is on pioneering industry-specific tech and sourcing.Driving the vision for sclerahunt, Mayank combines deep IT consultancy with strategic manpower leadership. His focus is on pioneering industry-specific tech and sourcing.',
-    iconPlaceholder: '👤' // image placeholder placeholder
-  },
-  { 
-    name: 'Vikas Singh', 
-    role: 'Technical Director',
-    desc: 'Overseeing all software architecture and delivery, Vikas ensures that IT solutions integrate flawlessly with sector requirements. Expert in scalable systems.',
-    iconPlaceholder: '⚙️' // image placeholder placeholder
-  },
-];
+const AboutUs = () => {
+  // The specific Unsplash image you requested (ID: 5fNmWej4tAA)
+  const HERO_IMAGE = "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80";
 
-const about = () => {
   return (
-    <section className="py-24 bg-white px-4 border-y border-gray-100">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-5xl font-extrabold text-center text-[#1C1C1C] mb-5 tracking-tighter">
-          The sclerahunt <span className="text-orange-600">Vanguard</span>
-        </h2>
-        <p className="text-center text-gray-600 max-w-lg mx-auto mb-20 text-lg leading-relaxed">
-          Driven by expertise, our leadership anchors innovative delivery and client success across IT and manpower sectors.
-        </p>
-
-        <div className="space-y-16 max-w-5xl mx-auto">
-          {leaderProfiles.map((leader, index) => (
-            <div key={index} className="relative flex flex-col md:flex-row items-center bg-gray-50 border border-gray-100 p-12 rounded-[2rem] gap-10 hover:shadow-xl transition-all">
-              {/* Leader image placeholder - circular placeholder in center from image */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-4 w-4 bg-orange-100 rounded-full"></div>
-
-              <div className="flex-shrink-0 bg-white border border-[#E9ECEF] h-40 w-40 rounded-full flex items-center justify-center text-6xl text-orange-500 shadow-inner overflow-hidden">
-                {/* Circular image placeholder lines */}
-                {leader.iconPlaceholder}
-              </div>
-              
-              <div className="flex-grow">
-                <h4 className="text-3xl font-extrabold text-[#1C1C1C] mb-2 tracking-tight">
-                  {leader.name}
-                </h4>
-                <p className="text-orange-600 font-semibold mb-6 tracking-wide text-sm uppercase">
-                  {leader.role}
-                </p>
-                <p className="text-[#424C5B] text-base leading-relaxed max-w-2xl">
-                  {leader.desc}
-                </p>
-              </div>
+    <div className="bg-[#fcfcfd] min-h-screen antialiased text-slate-900">
+      
+      <main className="w-full mx-auto px-6 md:px-20 py-16">
+        
+        <article className="w-full animate-fadeIn transition-all duration-700">
+          
+          {/* Banner Image - Full 100% Container Width */}
+          <div className="w-full rounded-[2rem] md:rounded-[3.5rem] overflow-hidden bg-gray-100 mb-16 shadow-2xl border border-gray-100">
+            <img 
+              src={HERO_IMAGE} 
+              alt="We Work Collaboration"
+              className="w-full h-[400px] md:h-[650px] object-cover"
+            />
+          </div>
+          
+          {/* Content Area - Same Design as Services */}
+          <div className="w-full">
+            <div className="flex items-center justify-center gap-6 mb-10">
+               <div className="px-5 py-2 bg-orange-600 text-white text-[11px] font-black uppercase tracking-[0.2em] rounded-full">
+                 About We Work
+               </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
+
+            <h2 className="text-4xl md:text-8xl font-black text-gray-950 mb-16 leading-[1] tracking-tighter text-center uppercase">
+              Our Journey & Excellence
+            </h2>
+
+            {/* Text 100% width and Justified */}
+            <div className="w-full text-gray-700 text-lg md:text-2xl leading-relaxed space-y-12 font-medium text-justify">
+              
+              <section>
+                <p>
+                  We are a team of dedicated and diverse personalities solely focused on achieving excellence by delivering supreme HR solutions to our partners. At <strong>We Work</strong>, we believe in ourselves to bring out the best in our clients by always giving them our best. Our clients' trust is our most prized asset, with the power to propel us to greater heights. We believe that <strong>We Work</strong> is the perfect riposte when it comes to the staffing needs of the modern workforce.
+                </p>
+              </section>
+
+              <section>
+                <h3 className="text-2xl md:text-5xl font-black text-gray-900 mb-6 uppercase tracking-tight italic">Our Vision</h3>
+                <p>
+                  To be one of the world's leading professional recruitment and talent management solutions providers by adopting the most stringent and confidential procedures to select the perfect candidates for you. Our goal is to participate in your success by empowering you with people whom you can trust to be your agents for delivery and change. We envision a corporate world where the right talent is seamlessly integrated into the right culture.
+                </p>
+              </section>
+
+              <section>
+                <h3 className="text-2xl md:text-5xl font-black text-gray-900 mb-6 uppercase tracking-tight italic">Our Mission</h3>
+                <p>
+                  We believe that only highly motivated, capable, and determined people can consistently deliver success. Finding and identifying such people amongst the ocean of available talent is an enduring challenge and not everyone is up to it. This is exactly what we aim to step up to! Our mission is to bridge the gap between human potential and corporate achievement, ensuring that every placement we make contributes to a legacy of success.
+                </p>
+              </section>
+
+            </div>
+          </div>
+        </article>
+      </main>
+
+      {/* Global CSS for Justification and Animation */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes fadeIn { 
+          from { opacity: 0; transform: translateY(40px); } 
+          to { opacity: 1; transform: translateY(0); } 
+        }
+        .animate-fadeIn { animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        p {
+          text-justify: inter-word;
+          word-spacing: -1px;
+        }
+        strong {
+          color: #000;
+          font-weight: 900;
+        }
+      `}} />
+    </div>
   );
 };
 
-export default about;
+export default AboutUs;
