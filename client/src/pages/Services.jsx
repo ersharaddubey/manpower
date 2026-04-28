@@ -4,7 +4,7 @@ import axios from 'axios';
 const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000';
 
 const Services = () => {
-  const [posts, setPosts] = useState([]);
+  // Removed 'posts' to fix the ESLint build error
   const [selectedPost, setSelectedPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,21 +12,19 @@ const Services = () => {
   const fetchServicesPosts = useCallback(async () => {
     setLoading(true);
     setError(null);
-    let foundData = [];
     const categories = ['services', 'Services'];
 
     try {
+      let found = false;
       for (let cat of categories) {
         const res = await axios.get(`${BASE_URL}/api/blog/${cat}`);
         if (res.data && res.data.length > 0) {
-          foundData = res.data;
+          setSelectedPost(res.data[0]); // Set the first available service
+          found = true;
           break; 
         }
       }
-      if (foundData.length > 0) {
-        setPosts(foundData);
-        setSelectedPost(foundData[0]); // Default first service dikhayega
-      } else {
+      if (!found) {
         setError("Services database records not found.");
       }
     } catch (err) {
@@ -114,7 +112,6 @@ const Services = () => {
         }
         .animate-fadeIn { animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
-        /* Justify text logic for better look on large screens */
         p {
           text-justify: inter-word;
           word-spacing: -1px;
