@@ -78,16 +78,9 @@ const Services = () => {
             
             {/* Content Area - 100% Width with Text Justify */}
             <div className="w-full">
-              <div className="flex items-center justify-center gap-6 mb-10">
-                 <div className="px-5 py-2 bg-orange-600 text-white text-[11px] font-black uppercase tracking-[0.2em] rounded-full">
-                   Our Specialized Service
-                 </div>
-              </div>
-
               <h2 className="text-4xl md:text-8xl font-black text-gray-950 mb-16 leading-[1] tracking-tighter text-center">
                 {selectedPost.title}
               </h2>
-
               {/* Text 100% width aur Justified */}
               <div className="w-full text-gray-700 text-lg md:text-2xl leading-relaxed space-y-10 font-medium text-justify">
                 {selectedPost.description.split('\n').map((para, i) => (
