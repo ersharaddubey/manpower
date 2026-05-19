@@ -30,7 +30,7 @@ const Navbar = () => {
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-1 group">
-            <span className="text-3xl font-black tracking-tighter text-gray-950 group-hover:text-orange-600 transition-colors">workfource</span>
+            <span className="text-3xl font-black tracking-tighter text-gray-950 group-hover:text-orange-600 transition-colors">Workforce</span>
             <span className="h-2 w-2 rounded-full bg-orange-600 mt-2 animate-pulse"></span>
           </Link>
 
