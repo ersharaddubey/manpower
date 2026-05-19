@@ -39,9 +39,9 @@ const Contact = () => {
   };
 
   const contactMethods = [
-    { icon: "📍", title: "Global Headquarters", detail: "Belapur, Navi Mumbai", desc: "Technical sourcing hub." },
-    { icon: "📞", title: "Direct Line", detail: "+91 98XXX XXXXX", desc: "Mon-Fri, 9am - 6pm." },
-    { icon: "📧", title: "Email Support", detail: "contact@workfourcesolutions.com", desc: "Manpower inquiries." }
+    { icon: "📍", title: "Office Address", detail: "A-219 trans yamuna colony agra pin code 282006" },
+    { icon: "📞", title: "Direct Line", detail: "+91 9557435571", desc: "Mon-Fri, 9am - 6pm." },
+    { icon: "📧", title: "Email Support", detail: "workforceinfo@gmail.com", desc: "Manpower inquiries." }
   ];
 
   return (
